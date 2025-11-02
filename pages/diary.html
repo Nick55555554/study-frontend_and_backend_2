@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ГРАЧЕВЕЛОПЕР КОВБОЙ</title>
+    <title>ГРАЧЕВ НИКОЛАЙ</title>
     <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-placeholder">ШЛЯПА</div>
-                <h1>ГРАЧЕВЕЛОПЕР КОВБОЙ</h1>
+                <h1>ГРАЧЕВ НИКОЛАЙ</h1>
             </div>
             <nav class="nav">
                 <a href="../index.html">Главная</a>
@@ -25,8 +25,29 @@
     <main class="main">
         <section class="diary">
             <div class="container">
+                <h2>Добавить новую запись</h2>
+                <form id="diaryForm" class="diary-form">
+                    <div class="form-group">
+                        <label for="entryDate">Дата:</label>
+                        <input type="date" id="entryDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryText">Запись:</label>
+                        <textarea id="entryText" placeholder="Опишите ваш прогресс..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryStatus">Статус:</label>
+                        <select id="entryStatus" required>
+                            <option value="status-done">Выполнено</option>
+                            <option value="status-in-progress">В процессе</option>
+                            <option value="status-planned">Запланировано</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Добавить запись</button>
+                </form>
+
                 <h2>Мой учебный прогресс</h2>
-                <div class="progress-list">
+                <div class="progress-list" id="progressList">
                     <div class="progress-item status-done">
                         <span class="date">15 дек</span> - Верстка макета сайта ✓
                     </div>
@@ -60,17 +81,92 @@
                         <div class="skill-level" style="width: 50%;">50%</div>
                     </div>
                 </div>
-
-                <button class="btn">Добавить запись</button>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 ГРАЧЕВЕЛОПЕР КОВБОЙ. Все права защищены.</p>
-            <p>📧 student@edu.ru | 📍 МОСКВА, РОССИИИЯ</p>
+            <p>&copy; 2025 ГРАЧЕВ НИКОЛАЙ. Все права защищены.</p>
+            <p>📧 student@edu.ru | 📍 МОСКВА, РОССИИЯ</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const diaryForm = document.getElementById('diaryForm');
+            const progressList = document.getElementById('progressList');
+            
+            // Загружаем записи из localStorage при загрузке страницы
+            loadEntriesFromStorage();
+            
+            diaryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const date = document.getElementById('entryDate').value;
+                const text = document.getElementById('entryText').value;
+                const status = document.getElementById('entryStatus').value;
+                
+                if (!date || !text.trim()) {
+                    alert('Пожалуйста, заполните все поля');
+                    return;
+                }
+                
+                addDiaryEntry(date, text, status);
+                saveEntryToStorage(date, text, status);
+                diaryForm.reset();
+            });
+            
+            function addDiaryEntry(date, text, status) {
+                const formattedDate = formatDate(date);
+                const entryElement = document.createElement('div');
+                entryElement.className = `progress-item ${status}`;
+                entryElement.innerHTML = `
+                    <span class="date">${formattedDate}</span> - ${text}
+                    <button class="delete-btn" onclick="deleteEntry(this)">×</button>
+                `;
+                progressList.insertBefore(entryElement, progressList.firstChild);
+            }
+            
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const day = date.getDate();
+                const month = date.toLocaleString('ru', { month: 'short' });
+                return `${day} ${month}`;
+            }
+            
+            function saveEntryToStorage(date, text, status) {
+                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                entries.unshift({ date, text, status });
+                localStorage.setItem('diaryEntries', JSON.stringify(entries));
+            }
+            
+            function loadEntriesFromStorage() {
+                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                entries.forEach(entry => {
+                    addDiaryEntry(entry.date, entry.text, entry.status);
+                });
+            }
+            
+            window.deleteEntry = function(button) {
+                const entryElement = button.parentElement;
+                const entryText = entryElement.textContent.replace('×', '').trim();
+                
+                if (confirm('Удалить эту запись?')) {
+                    entryElement.remove();
+                    removeEntryFromStorage(entryText);
+                }
+            };
+            
+            function removeEntryFromStorage(entryText) {
+                let entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                entries = entries.filter(entry => {
+                    const formattedDate = formatDate(entry.date);
+                    return !`${formattedDate} - ${entry.text}`.includes(entryText);
+                });
+                localStorage.setItem('diaryEntries', JSON.stringify(entries));
+            }
+        });
+    </script>
 </body>
 </html>
