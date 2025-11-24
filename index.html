@@ -1,201 +1,110 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ГРАЧЕВ НИКОЛАЙ</title>
-    <link rel="stylesheet" href="./styles/index.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Грачев Николай</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+    <a class="skip-link" href="#inf">Перейти к основному содержимому</a>
+    <main>
+        <header>
+            <h1 class="header__title">Грачев Николай</h1>
+        </header>
 
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <div class="logo-placeholder">🚀</div>
-                <h1>ГРАЧЕВ НИКОЛАЙ</h1>
-            </div>
-            <nav class="nav">
-                <a href="index.html">Главная</a>
-                <a href="pages/projects.html">Проекты</a>
-                <a href="pages/diary.html">Дневник</a>
-                <a href="pages/contacts.html">Контакты</a>
-            </nav>
-        </div>
-    </header>
+        <nav aria-label="Основная навигация">
+            <ul class="nav__list">
+                <li class="nav__el"><a class="nav__link nav__link--active" href="index.html" aria-current="page">Главная</a></li>
+                <li class="nav__el"><a class="nav__link" href="./pages/contacts.html">Контакты</a></li>
+                <li class="nav__el"><a class="nav__link" href="./pages/diary.html">Дневник</a></li>
+                <li class="nav__el"><a class="nav__link" href="./pages/projects.html">Проекты</a></li>
+            </ul>
+        </nav>
 
-    <main class="main">
-        <section class="hero">
-            <div class="container hero-container">
-                <div class="hero-image">
-                    <img class="photo-placeholder" src="./assets/work.jpg" alt="Фото"/>
-                    <div class="hero-badge">Frontend Developer</div>
-                </div>
-                <div class="hero-text">
-                    <h2>Привет! Я студент группы ЭФБО-02-2024</h2>
-                    <p>Увлекаюсь веб-разработкой и создаю удобные и современные интерфейсы. Люблю превращать сложные задачи в элегантные решения.</p>
-                    <div class="hero-buttons">
-                        <a href="./assets/resume.pdf" class="btn btn-primary" download>
-                            <i class="fas fa-download"></i>Скачать резюме
-                        </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            <i class="fas fa-eye"></i>Смотреть проекты
-                        </a>
-                    </div>
+        <section class="information" id="inf">
+            <div class="information__container">
+                <img class="information__avatar" alt="Аватар Грачева Николая" src="./assets/work.jpg" 
+                srcset="./assets/work-400.jpg 400w,
+                        ./assets/work.jpg 1200w" 
+                sizes="(max-width: 768px) 200px, 400px" loading="lazy">
+                <div class="about">
+                    <h3>Привет! Я студент группы ЭФБО-02-2024</h3>
+                    <h3>Увлекаюсь веб-разработкой и создаю современные интерфейсы</h3>
+                    <a href="./assets/resume.pdf" class="btn btn--a">
+                        Скачать резюме
+                    </a>
                 </div>
             </div>
         </section>
 
         <section class="skills">
-            <div class="container">
-                <h2 class="section-title">Мои навыки</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fab fa-html5"></i>
-                        </div>
-                        <h3>HTML/CSS/SCSS/TAILWIND CSS</h3>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 90%;">
-                                <span>90%</span>
-                            </div>
-                        </div>
+            <div class="skills__header">
+                <h1 class="section__article">Мои навыки</h1>
+            </div>
+            <div class="skills__container">
+                <article class="skills__element">
+                    <h3>HTML/CSS/SCSS/TAILWIND CSS</h3>
+                    <div class="skills__bar">
+                        <div class="skills__bar--line" style="width: 90%;">90%</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fab fa-js"></i>
-                        </div>
-                        <h3>JavaScript/TypeScript</h3>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 80%;">
-                                <span>80%</span>
-                            </div>
-                        </div>
+                </article>
+                <article class="skills__element">
+                    <h3>JavaScript/TypeScript</h3>
+                    <div class="skills__bar">
+                        <div class="skills__bar--line" style="width: 80%;">80%</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fab fa-bootstrap"></i>
-                        </div>
-                        <h3>Bootstrap</h3>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 40%;">
-                                <span>40%</span>
-                            </div>
-                        </div>
+                </article>
+                <article class="skills__element">
+                    <h3>Bootstrap</h3>
+                    <div class="skills__bar">
+                        <div class="skills__bar--line" style="width: 40%;">40%</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fab fa-react"></i>
-                        </div>
-                        <h3>React</h3>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 90%;">
-                                <span>90%</span>
-                            </div>
-                        </div>
+                </article>
+                <article class="skills__element">
+                    <h3>React</h3>
+                    <div class="skills__bar">
+                        <div class="skills__bar--line" style="width: 90%;">90%</div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
-        <section id="projects" class="featured-projects">
-            <div class="container">
-                <h2 class="section-title">Лучшие проекты</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-tech">React • SCSS</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Сайт-визитка психоаналитику</h3>
-                            <p>Элегантный и минималистичный сайт для психоаналитика с системой записи и блогом</p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">SCSS</span>
-                                <span class="tag">Responsive</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://психоаналитик.я.рус/" class="project-link" target="_blank">
-                                    <i class="fab fa-github"></i> Live
-                                </a>
-                                <a href="https://github.com/grachevelloper/psyhology_static" class="project-link" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-tech">Next.js • TypeScript</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>СССР - исторический форум</h3>
-                            <p>Современный форум с системой постов, комментариев и модерации для обсуждения истории</p>
-                            <div class="project-tags">
-                                <span class="tag">Next.js</span>
-                                <span class="tag">TypeScript</span>
-                                <span class="tag">Forum</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/grachevelloper/ussr_forward" class="project-link" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> Github
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-tech">React • Framer Motion</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Мое портфолио</h3>
-                            <p>Интерактивное портфолио с анимациями, адаптивным дизайном и современным UI/UX</p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Framer Motion</span>
-                                <span class="tag">SCSS</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://grachevelloper.github.io/my_projects/" class="project-link" target="_blank">
-                                    <i class="fab fa-github"></i> Live
-                                </a>
-                                <a href="https://github.com/grachevelloper/my_projects" class="project-link" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> Github
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section class="projects">
+            <div class="projects__header">
+                <h1 class="section__article">Мои проекты</h1>
+            </div>
+            <div class="projects__container">
+                <article class="projects__element">
+                    <h2>Сайт психоаналитику</h2>
+                    <img class="projects__img" alt="Сайт для психоаналитика" 
+                    srcset="./assets/Yra_title-400.png 400w,
+                            ./assets/Yra_title.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="./assets/Yra_title.png" loading="lazy">
+                    <p>Элегантный сайт-визитка с адаптивным дизайном</p>
+                </article>
+                <article class="projects__element">
+                    <h2>СССР-форум</h2>
+                    <img class="projects__img" alt="Исторический форум" 
+                    srcset="./assets/USSR_title-400.png 400w,
+                            ./assets/USSR_title.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="./assets/USSR_title.png" loading="lazy">
+                    <p>Современный форум на Next.js с системой постов</p>
+                </article>
+                <article class="projects__element">
+                    <h2>Портфолио</h2>
+                    <img class="projects__img" alt="Интерактивное портфолио" 
+                    srcset="./assets/my-projects-400.png 400w,
+                            ./assets/my-projects.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="./assets/my-projects.png" loading="lazy">
+                    <p>Интерактивное портфолио с анимациями</p>
+                </article>
             </div>
         </section>
+
+        <footer>
+            <h1 class="footer__text">&copy; 2025 Грачев Николай. Все права защищены.</h1>
+        </footer>
     </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>ГРАЧЕВ НИКОЛАЙ</h3>
-                    <p>Frontend Developer</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://github.com/yourusername" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://t.me/yourusername" class="social-link" target="_blank">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="mailto:student@edu.ru" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 ГРАЧЕВ НИКОЛАЙ. Все права защищены.</p>
-                <p>📧 student@edu.ru | 📍 МОСКВА, РОССИЯ</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

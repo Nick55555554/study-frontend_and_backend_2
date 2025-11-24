@@ -1,172 +1,258 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ГРАЧЕВ НИКОЛАЙ</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <title>Дневник - Грачев Николай</title>
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <div class="logo-placeholder">ШЛЯПА</div>
-                <h1>ГРАЧЕВ НИКОЛАЙ</h1>
+    <a class="skip-link" href="#diary">Перейти к основному содержимому</a>
+    <main>
+        <header>
+            <h1 class="header__title">Грачев Николай</h1>
+        </header>
+
+        <nav aria-label="Основная навигация">
+            <ul class="nav__list">
+                <li class="nav__el"><a class="nav__link" href="../index.html">Главная</a></li>
+                <li class="nav__el"><a class="nav__link" href="./contacts.html">Контакты</a></li>
+                <li class="nav__el"><a class="nav__link nav__link--active" href="./diary.html" aria-current="page">Дневник</a></li>
+                <li class="nav__el"><a class="nav__link" href="./projects.html">Проекты</a></li>
+            </ul>
+        </nav>
+
+        <section class="diary" id="diary">
+            <div class="diary__header">
+                <h1 class="section__article">Учебный дневник</h1>
             </div>
-            <nav class="nav">
-                <a href="../index.html">Главная</a>
-                <a href="./projects.html">Проекты</a>
-                <a href="./diary.html">Дневник</a>
-                <a href="./contacts.html">Контакты</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="main">
-        <section class="diary">
-            <div class="container">
-                <h2>Добавить новую запись</h2>
-                <form id="diaryForm" class="diary-form">
-                    <div class="form-group">
-                        <label for="entryDate">Дата:</label>
-                        <input type="date" id="entryDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="entryText">Запись:</label>
-                        <textarea id="entryText" placeholder="Опишите ваш прогресс..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="entryStatus">Статус:</label>
-                        <select id="entryStatus" required>
-                            <option value="status-done">Выполнено</option>
-                            <option value="status-in-progress">В процессе</option>
-                            <option value="status-planned">Запланировано</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn">Добавить запись</button>
-                </form>
+            <div class="diary__buttons">
+                <button class="btn btn--diary" onclick="openModal()">Добавить запись</button>
+            </div>
 
-                <h2>Мой учебный прогресс</h2>
-                <div class="progress-list" id="progressList">
-                    <div class="progress-item status-done">
-                        <span class="date">15 дек</span> - Верстка макета сайта ✓
-                    </div>
-                    <div class="progress-item status-done">
-                        <span class="date">10 дек</span> - JavaScript основы ✓
-                    </div>
-                    <div class="progress-item status-in-progress">
-                        <span class="date">05 дек</span> - Работа с формами in progress
-                    </div>
-                    <div class="progress-item status-in-progress">
-                        <span class="date">01 дек</span> - Адаптивный дизайн in progress
-                    </div>
-                </div>
-
-                <h2>Текущие курсы</h2>
-                <div class="course">
-                    <span>Веб-разработка</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%;">90%</div>
-                    </div>
-                </div>
-                <div class="course">
-                    <span>JavaScript</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%;">70%</div>
-                    </div>
-                </div>
-                <div class="course">
-                    <span>React</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 50%;">50%</div>
-                    </div>
-                </div>
+            <div class="diary__content" id="diaryEntries">
+                <!-- Записи будут загружаться здесь -->
             </div>
         </section>
+
+        <footer>
+            <h1 class="footer__text">&copy; 2025 Грачев Николай. Все права защищены.</h1>
+        </footer>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 ГРАЧЕВ НИКОЛАЙ. Все права защищены.</p>
-            <p>📧 student@edu.ru | 📍 МОСКВА, РОССИИЯ</p>
+    <!-- Модальное окно для добавления записи -->
+    <div id="diaryModal" class="modal">
+        <div class="modal__content">
+            <button class="modal--close" onclick="closeModal()">&times;</button>
+            <div class="modal__header">
+                <h2>Добавить новую запись</h2>
+            </div>
+            <div class="modal__body">
+                <form id="diaryForm" class="diary-form">
+                    <div class="form__group">
+                        <label for="entryDate">Дата <span class="required">*</span></label>
+                        <input type="date" id="entryDate" name="entryDate" required>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="entryTitle">Заголовок <span class="required">*</span></label>
+                        <input type="text" id="entryTitle" name="entryTitle" required placeholder="Что вы сделали?">
+                    </div>
+
+                    <div class="form__group">
+                        <label for="entryDescription">Описание <span class="required">*</span></label>
+                        <textarea id="entryDescription" name="entryDescription" rows="4" required placeholder="Подробно опишите вашу работу..."></textarea>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="entryStatus">Статус <span class="required">*</span></label>
+                        <select id="entryStatus" name="entryStatus" required>
+                            <option value="">Выберите статус</option>
+                            <option value="done">✓ Выполнено</option>
+                            <option value="in-progress">В процессе</option>
+                            <option value="planned">Запланировано</option>
+                        </select>
+                    </div>
+
+                    <div class="form__actions">
+                        <button type="button" class="btn btn--secondary" onclick="closeModal()">Отмена</button>
+                        <button type="submit" class="btn btn--submit">Добавить запись</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </footer>
+    </div>
 
     <script>
+        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
-            const diaryForm = document.getElementById('diaryForm');
-            const progressList = document.getElementById('progressList');
+            loadDiaryEntries();
             
-            // Загружаем записи из localStorage при загрузке страницы
-            loadEntriesFromStorage();
-            
-            diaryForm.addEventListener('submit', function(e) {
+            // Обработчик формы
+            document.getElementById('diaryForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const date = document.getElementById('entryDate').value;
-                const text = document.getElementById('entryText').value;
-                const status = document.getElementById('entryStatus').value;
-                
-                if (!date || !text.trim()) {
-                    alert('Пожалуйста, заполните все поля');
-                    return;
-                }
-                
-                addDiaryEntry(date, text, status);
-                saveEntryToStorage(date, text, status);
-                diaryForm.reset();
+                addDiaryEntry();
             });
             
-            function addDiaryEntry(date, text, status) {
-                const formattedDate = formatDate(date);
-                const entryElement = document.createElement('div');
-                entryElement.className = `progress-item ${status}`;
-                entryElement.innerHTML = `
-                    <span class="date">${formattedDate}</span> - ${text}
-                    <button class="delete-btn" onclick="deleteEntry(this)">×</button>
-                `;
-                progressList.insertBefore(entryElement, progressList.firstChild);
-            }
-            
-            function formatDate(dateString) {
-                const date = new Date(dateString);
-                const day = date.getDate();
-                const month = date.toLocaleString('ru', { month: 'short' });
-                return `${day} ${month}`;
-            }
-            
-            function saveEntryToStorage(date, text, status) {
-                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
-                entries.unshift({ date, text, status });
-                localStorage.setItem('diaryEntries', JSON.stringify(entries));
-            }
-            
-            function loadEntriesFromStorage() {
-                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
-                entries.forEach(entry => {
-                    addDiaryEntry(entry.date, entry.text, entry.status);
-                });
-            }
-            
-            window.deleteEntry = function(button) {
-                const entryElement = button.parentElement;
-                const entryText = entryElement.textContent.replace('×', '').trim();
-                
-                if (confirm('Удалить эту запись?')) {
-                    entryElement.remove();
-                    removeEntryFromStorage(entryText);
-                }
-            };
-            
-            function removeEntryFromStorage(entryText) {
-                let entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
-                entries = entries.filter(entry => {
-                    const formattedDate = formatDate(entry.date);
-                    return !`${formattedDate} - ${entry.text}`.includes(entryText);
-                });
-                localStorage.setItem('diaryEntries', JSON.stringify(entries));
-            }
+            // Устанавливаем сегодняшнюю дату по умолчанию
+            document.getElementById('entryDate').valueAsDate = new Date();
         });
+
+        // Загрузка записей из localStorage
+        function loadDiaryEntries() {
+            const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+            const defaultEntries = [
+                {
+                    id: '1',
+                    date: '2024-12-15',
+                    title: 'Завершил вёрстку сайта психоаналитику',
+                    description: 'Полностью завершил адаптивную вёрстку с использованием современных техник. Добавил поддержку Retina-дисплеев и оптимизировал изображения.',
+                    status: 'done'
+                },
+                {
+                    id: '2',
+                    date: '2024-12-10',
+                    title: 'Изучение TypeScript',
+                    description: 'Продолжаю углублённое изучение TypeScript. Разбираюсь с дженериками и продвинутыми типами.',
+                    status: 'in-progress'
+                },
+                {
+                    id: '3',
+                    date: '2024-12-05',
+                    title: 'Работа над USSR-форумом',
+                    description: 'Начал разработку исторического форума на Next.js. Проектирую архитектуру базы данных и API.',
+                    status: 'done'
+                },
+                {
+                    id: '4',
+                    date: '2024-12-01',
+                    title: 'Оптимизация производительности',
+                    description: 'Изучаю техники оптимизации веб-приложений. Lighthouse показал отличные результаты после внедрения улучшений.',
+                    status: 'done'
+                }
+            ];
+
+            // Если в localStorage пусто, добавляем демо-записи
+            if (diaryEntries.length === 0) {
+                localStorage.setItem('diaryEntries', JSON.stringify(defaultEntries));
+            }
+
+            displayDiaryEntries(diaryEntries.length > 0 ? diaryEntries : defaultEntries);
+        }
+
+        // Отображение записей
+        function displayDiaryEntries(entries) {
+            const diaryContainer = document.getElementById('diaryEntries');
+            diaryContainer.innerHTML = '';
+
+            // Сортируем записи по дате (новые сверху)
+            entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            entries.forEach(entry => {
+                const entryElement = document.createElement('article');
+                entryElement.className = 'diary__element';
+                entryElement.innerHTML = `
+                    <div class="diary__element--date">${formatDate(entry.date)}</div>
+                    <h3>${entry.title}</h3>
+                    <p>${entry.description}</p>
+                    <span class="diary__element--${getStatusClass(entry.status)}">${getStatusText(entry.status)}</span>
+                    <button class="delete-btn" onclick="deleteEntry('${entry.id}')" aria-label="Удалить запись">×</button>
+                `;
+                diaryContainer.appendChild(entryElement);
+            });
+        }
+
+        // Добавление новой записи
+        function addDiaryEntry() {
+            const date = document.getElementById('entryDate').value;
+            const title = document.getElementById('entryTitle').value;
+            const description = document.getElementById('entryDescription').value;
+            const status = document.getElementById('entryStatus').value;
+
+            if (!date || !title || !description || !status) {
+                alert('Пожалуйста, заполните все поля!');
+                return;
+            }
+
+            const newEntry = {
+                id: Date.now().toString(),
+                date: date,
+                title: title,
+                description: description,
+                status: status
+            };
+
+            const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+            diaryEntries.push(newEntry);
+            localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries));
+
+            displayDiaryEntries(diaryEntries);
+            closeModal();
+            resetForm();
+        }
+
+        // Удаление записи
+        function deleteEntry(entryId) {
+            if (confirm('Вы уверены, что хотите удалить эту запись?')) {
+                const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+                const updatedEntries = diaryEntries.filter(entry => entry.id !== entryId);
+                localStorage.setItem('diaryEntries', JSON.stringify(updatedEntries));
+                displayDiaryEntries(updatedEntries);
+            }
+        }
+
+        // Форматирование даты
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('ru-RU', options);
+        }
+
+        // Получение класса для статуса
+        function getStatusClass(status) {
+            const statusClasses = {
+                'done': 'done',
+                'in-progress': 'proccess',
+                'planned': 'planned'
+            };
+            return statusClasses[status] || 'proccess';
+        }
+
+        // Получение текста статуса
+        function getStatusText(status) {
+            const statusTexts = {
+                'done': '✓ Выполнено',
+                'in-progress': 'В процессе',
+                'planned': 'Запланировано'
+            };
+            return statusTexts[status] || 'В процессе';
+        }
+
+        // Управление модальным окном
+        function openModal() {
+            document.getElementById('diaryModal').style.display = 'block';
+            document.getElementById('entryTitle').focus();
+        }
+
+        function closeModal() {
+            document.getElementById('diaryModal').style.display = 'none';
+            resetForm();
+        }
+
+        // Сброс формы
+        function resetForm() {
+            document.getElementById('diaryForm').reset();
+            document.getElementById('entryDate').valueAsDate = new Date();
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('diaryModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>

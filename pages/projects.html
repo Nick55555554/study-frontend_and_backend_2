@@ -1,58 +1,105 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ГРАЧЕВ НИКОЛАЙ</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <title>Проекты - Грачев Николай</title>
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <div class="logo-placeholder">ШЛЯПА</div>
-                <h1>ГРАЧЕВ НИКОЛАЙ</h1>
-            </div>
-            <nav class="nav">
-                <a href="../index.html">Главная</a>
-                <a href="./projects.html">Проекты</a>
-                <a href="./diary.html">Дневник</a>
-                <a href="./contacts.html">Контакты</a>
-            </nav>
-        </div>
-    </header>
+    <a class="skip-link" href="#projects">Перейти к основному содержимому</a>
+    <main>
+        <header>
+            <h1 class="header__title">Грачев Николай</h1>
+        </header>
 
-    <main class="main">
-        <section class="projects-page">
-            <div class="container">
-                <h2>Мои проекты</h2>
-                <div class="projects-grid full-grid">
-                    <a class="project-card-large" href="психоаналитик.я.рус">
-                        <h3>Личный сайт</h3>
-                        <p>HTML, SCSS</p>
-                    </a>
-                    <a class="project-card-large" href="https://grachevelloper.github.io/study-frontend_and_backend/">
-                        <h3>Сайт-задание по учебе</h3>
-                        <p>HTML, CSS</p>
-                    </a>
-                    <a class="project-card-large" href="https://github.com/grachevelloper/ussr_forward">
-                        <h3>СССР-форм</h3>
-                        <p>Next.js</p>
-                    </a>
-                    <a class="project-card-large" href="https://grachevelloper.github.io/my_projects/">
-                        <h3>Портфолио</h3>
-                        <p>Frame-motion, React</p>
-                    </a>
-                </div>
+        <nav aria-label="Основная навигация">
+            <ul class="nav__list">
+                <li class="nav__el"><a class="nav__link" href="../index.html">Главная</a></li>
+                <li class="nav__el"><a class="nav__link" href="./contacts.html">Контакты</a></li>
+                <li class="nav__el"><a class="nav__link" href="./diary.html">Дневник</a></li>
+                <li class="nav__el"><a class="nav__link nav__link--active" href="./projects.html" aria-current="page">Проекты</a></li>
+            </ul>
+        </nav>
+
+        <section class="projects" id="projects">
+            <div class="projects__header">
+                <h1 class="section__article">Мои проекты</h1>
+            </div>
+
+            <div class="projects__filter">
+                <button class="btn--filter active" data-filter="all">Все</button>
+                <button class="btn--filter" data-filter="react">React</button>
+                <button class="btn--filter" data-filter="html">HTML/CSS</button>
+                <button class="btn--filter" data-filter="next">Next.js</button>
+            </div>
+
+            <div class="project__container">
+                <article class="project__card" data-category="html">
+                    <img class="projects__img" alt="Сайт психоаналитику" 
+                    srcset="../assets/Yra_title-400.png 400w,
+                            ../assets/Yra_title.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="../assets/Yra_title.png" loading="lazy">
+                    <h3 class="project__card--title">Сайт психоаналитику</h3>
+                    <p>Элегантный сайт-визитка с адаптивным дизайном и современным UI</p>
+                </article>
+
+                <article class="project__card" data-category="next">
+                    <img class="projects__img" alt="СССР-форум" 
+                    srcset="../assets/USSR_title-400.png 400w,
+                            ../assets/USSR_title.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="../assets/USSR_title.png" loading="lazy">
+                    <h3 class="project__card--title">СССР-форум</h3>
+                    <p>Современный форум с системой постов, комментариев и модерации</p>
+                </article>
+
+                <article class="project__card" data-category="react">
+                    <img class="projects__img" alt="Портфолио" 
+                    srcset="../assets/my-projects-400.png 400w,
+                            ../assets/my-projects.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="../assets/my-projects.png" loading="lazy">
+                    <h3 class="project__card--title">Интерактивное портфолио</h3>
+                    <p>Портфолио с анимациями, адаптивным дизайном и современным UI/UX</p>
+                </article>
+
+                <article class="project__card" data-category="html">
+                    <img class="projects__img" alt="Учебный проект" 
+                    srcset="../assets/study-400.png 400w,
+                            ../assets/study.png 1200w" 
+                    sizes="(max-width: 768px) 200px, 800px" src="../assets/study.png" loading="lazy">
+                    <h3 class="project__card--title">Учебный проект</h3>
+                    <p>Сайт-задание по фронтенд разработке с семантической версткой</p>
+                </article>
             </div>
         </section>
+
+        <footer>
+            <h1 class="footer__text">&copy; 2025 Грачев Николай. Все права защищены.</h1>
+        </footer>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 ГРАЧЕВ НИКОЛАЙ. Все права защищены.</p>
-            <p>📧 student@edu.ru | 📍 МОСКВА, РОССИИИЯ</p>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.btn--filter');
+            const projectCards = document.querySelectorAll('.project__card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
